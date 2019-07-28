@@ -214,7 +214,7 @@ U 1 1 5BB5B7F7
 P 1150 1300
 F 0 "J2" H 1200 1617 50  0000 C CNN
 F 1 "Conn_02x03_Odd_Even" H 1200 1526 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical" H 1150 1300 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 1150 1300 50  0001 C CNN
 F 3 "~" H 1150 1300 50  0001 C CNN
 	1    1150 1300
 	1    0    0    -1  
@@ -481,7 +481,7 @@ U 1 1 5D3E90B5
 P 7800 1200
 F 0 "J4" H 7718 875 50  0000 C CNN
 F 1 "12V_IN" H 7718 966 50  0000 C CNN
-F 2 "TerminalBlock_MetzConnect:TerminalBlock_MetzConnect_Type701_RT11L02HGLU_1x02_P6.35mm_Horizontal" H 7800 1200 50  0001 C CNN
+F 2 "footprints:TerminalBlock_MetzConnect_Type701_RT11L02HGLU_1x02_P6.35mm_Horizontal" H 7800 1200 50  0001 C CNN
 F 3 "~" H 7800 1200 50  0001 C CNN
 	1    7800 1200
 	-1   0    0    1   
@@ -548,7 +548,7 @@ U 1 1 5D3DD650
 P 2600 7300
 F 0 "J3" H 2600 7850 50  0000 R CNN
 F 1 "RIGHT_DATA" H 2800 7750 50  0000 R CNN
-F 2 "Connector_RJ:RJ12_Amphenol_54601" V 2600 7325 50  0001 C CNN
+F 2 "footprints:RJ12_Amphenol_54601" V 2600 7325 50  0001 C CNN
 F 3 "~" V 2600 7325 50  0001 C CNN
 	1    2600 7300
 	-1   0    0    -1  
@@ -669,7 +669,7 @@ F 1 "1k" V 4850 3100 50  0000 C CNN
 F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5425 3000 50  0001 C CNN
 F 3 "~" H 5150 3000 50  0001 C CNN
 	1    5150 3000
-	0    1    1    0   
+	0    -1   1    0   
 $EndComp
 $Comp
 L Device:D_Small D8
@@ -1049,7 +1049,7 @@ U 1 1 5D4A0C51
 P 10350 3400
 F 0 "J5" H 10250 4350 50  0000 L CNN
 F 1 "SOLENOIDS_OUT_1" V 10500 3050 50  0000 L CNN
-F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-16-3.5-H_1x16_P3.50mm_Horizontal" H 10350 3400 50  0001 C CNN
+F 2 "footprints:TerminalBlock_Phoenix_PT-1,5-16-3.5-H_1x16_P3.50mm_Horizontal" H 10350 3400 50  0001 C CNN
 F 3 "~" H 10350 3400 50  0001 C CNN
 	1    10350 3400
 	1    0    0    -1  
@@ -1171,7 +1171,7 @@ F 1 "10k" V 5100 3900 50  0000 C CNN
 F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5075 3900 50  0001 C CNN
 F 3 "~" H 4800 3900 50  0001 C CNN
 	1    4800 3900
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L Device:R_Pack04 RN8
@@ -1182,7 +1182,7 @@ F 1 "1k" V 4850 3600 50  0000 C CNN
 F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5425 3500 50  0001 C CNN
 F 3 "~" H 5150 3500 50  0001 C CNN
 	1    5150 3500
-	0    1    1    0   
+	0    -1   1    0   
 $EndComp
 Wire Wire Line
 	5350 2800 5550 2800
@@ -1339,13 +1339,13 @@ Wire Wire Line
 $Comp
 L Device:R_Pack04 RN1
 U 1 1 5D8EF166
-P 4300 3900
-F 0 "RN1" V 3900 3850 50  0000 L CNN
-F 1 "10k" V 4000 3850 50  0000 L CNN
-F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 4575 3900 50  0001 C CNN
-F 3 "~" H 4300 3900 50  0001 C CNN
-	1    4300 3900
-	1    0    0    -1  
+P 4200 3900
+F 0 "RN1" V 3800 3850 50  0000 L CNN
+F 1 "10k" V 3900 3850 50  0000 L CNN
+F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 4475 3900 50  0001 C CNN
+F 3 "~" H 4200 3900 50  0001 C CNN
+	1    4200 3900
+	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	9100 2650 9100 2500
@@ -1375,17 +1375,6 @@ F 3 "" H 8750 6050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Pack04 RN9
-U 1 1 5DB9DEC2
-P 5150 5050
-F 0 "RN9" V 4850 4950 50  0000 C CNN
-F 1 "1k" V 4850 5150 50  0000 C CNN
-F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5425 5050 50  0001 C CNN
-F 3 "~" H 5150 5050 50  0001 C CNN
-	1    5150 5050
-	0    1    1    0   
-$EndComp
-$Comp
 L Device:D_Small D16
 U 1 1 5DB9DEC8
 P 9700 6200
@@ -1398,8 +1387,6 @@ F 3 "~" V 9700 6200 50  0001 C CNN
 $EndComp
 Text Label 9600 4550 2    50   ~ 0
 12V_FUSED2
-Wire Wire Line
-	9850 6300 9950 6300
 Wire Wire Line
 	9800 6300 9800 6250
 Wire Wire Line
@@ -1763,7 +1750,7 @@ U 1 1 5DB9DF8D
 P 10350 5450
 F 0 "J6" H 10250 6400 50  0000 L CNN
 F 1 "SOLENOIDS_OUT_2" V 10500 5100 50  0000 L CNN
-F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-16-3.5-H_1x16_P3.50mm_Horizontal" H 10350 5450 50  0001 C CNN
+F 2 "footprints:TerminalBlock_Phoenix_PT-1,5-16-3.5-H_1x16_P3.50mm_Horizontal" H 10350 5450 50  0001 C CNN
 F 3 "~" H 10350 5450 50  0001 C CNN
 	1    10350 5450
 	1    0    0    -1  
@@ -1885,7 +1872,7 @@ F 1 "10k" V 5100 5950 50  0000 C CNN
 F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5075 5950 50  0001 C CNN
 F 3 "~" H 4800 5950 50  0001 C CNN
 	1    4800 5950
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L Device:R_Pack04 RN10
@@ -1896,7 +1883,7 @@ F 1 "1k" V 4850 5650 50  0000 C CNN
 F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5425 5550 50  0001 C CNN
 F 3 "~" H 5150 5550 50  0001 C CNN
 	1    5150 5550
-	0    1    1    0   
+	0    -1   1    0   
 $EndComp
 Text Label 5600 4950 2    50   ~ 0
 GATE10
@@ -2041,7 +2028,7 @@ F 1 "10k" V 4000 5900 50  0000 L CNN
 F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 4575 5950 50  0001 C CNN
 F 3 "~" H 4300 5950 50  0001 C CNN
 	1    4300 5950
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	9100 4700 9100 4550
@@ -2443,13 +2430,13 @@ $EndComp
 $Comp
 L Switch:SW_DIP_x07 SW2
 U 1 1 5E140302
-P 7000 1350
-F 0 "SW2" H 7000 2017 50  0000 C CNN
-F 1 "MIDI_NOTE_RANGE" H 7000 1926 50  0000 C CNN
-F 2 "Button_Switch_THT:SW_DIP_SPSTx08_Slide_6.7x21.88mm_W7.62mm_P2.54mm_LowProfile" H 7000 1350 50  0001 C CNN
-F 3 "~" H 7000 1350 50  0001 C CNN
-	1    7000 1350
-	1    0    0    -1  
+P 7000 1150
+F 0 "SW2" H 7000 683 50  0000 C CNN
+F 1 "MIDI_NOTE_RANGE" H 7000 774 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_DIP_SPSTx08_Slide_6.7x21.88mm_W7.62mm_P2.54mm_LowProfile" H 7000 1150 50  0001 C CNN
+F 3 "~" H 7000 1150 50  0001 C CNN
+	1    7000 1150
+	1    0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0163
@@ -2788,7 +2775,7 @@ U 1 1 5D3CA279
 P 950 7300
 F 0 "J1" H 1007 7867 50  0000 C CNN
 F 1 "LEFT_DATA" H 1007 7776 50  0000 C CNN
-F 2 "Connector_RJ:RJ12_Amphenol_54601" V 950 7325 50  0001 C CNN
+F 2 "footprints:RJ12_Amphenol_54601" V 950 7325 50  0001 C CNN
 F 3 "~" V 950 7325 50  0001 C CNN
 	1    950  7300
 	1    0    0    -1  
@@ -2805,4 +2792,17 @@ Wire Wire Line
 	4500 2000 5150 2000
 Text Notes 3850 750  0    100  ~ 0
 CONFIGURATION
+Wire Wire Line
+	9800 6300 9700 6300
+$Comp
+L Device:R_Pack04 RN9
+U 1 1 5DB9DEC2
+P 5150 5050
+F 0 "RN9" V 4850 4950 50  0000 C CNN
+F 1 "1k" V 4850 5150 50  0000 C CNN
+F 2 "Resistor_SMD:R_Array_Concave_4x0603" V 5425 5050 50  0001 C CNN
+F 3 "~" H 5150 5050 50  0001 C CNN
+	1    5150 5050
+	0    -1   1    0   
+$EndComp
 $EndSCHEMATC
