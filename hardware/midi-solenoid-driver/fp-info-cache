@@ -1,4 +1,4 @@
-15984498444717336
+15987627118503647
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -44191,6 +44191,13 @@ car blade fuse mini
 4
 2
 footprints
+piano-keys
+
+
+0
+0
+0
+footprints
 Potentiometer_Bourns_PTV09A-1_Single_Vertical
 Potentiometer, vertical, Bourns PTV09A-1 Single, http://www.bourns.com/docs/Product-Datasheets/ptv09.pdf
 Potentiometer vertical Bourns PTV09A-1 Single
@@ -44255,6 +44262,13 @@ vtLogo
 0
 footprints
 vtLogo15mm
+
+
+0
+0
+0
+footprints
+willemhillier.wordpress-logo
 
 
 0
