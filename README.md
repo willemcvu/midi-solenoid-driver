@@ -13,7 +13,7 @@ In addition to supporting daisy-chaining, the solenoid driver board has several 
 
 
 Currently, MIDI data is fed to the solenoid drivers by a custom USB to serial-over-RJ12 board:
-![usb interface board](https://github.com/willemcvu/midi-solenoid-driver/tree/master/hardware/solenoid-driver-hub/front.JPG)
+![usb interface board](https://github.com/willemcvu/midi-solenoid-driver/tree/master/hardware/usb-serial-interface/front.JPG)
 
 In the near future, more RJ12-compatible MIDI interface boards will be designed and released, allowing for more connectivity options. These will likely include:
  - Native plug-and-play USB MIDI (as opposed to the MIDI-over-serial in use right now)
