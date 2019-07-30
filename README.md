@@ -11,7 +11,11 @@ In addition to supporting daisy-chaining, the solenoid driver board has several 
 
 ![solenoid board annotated](https://github.com/willemcvu/midi-solenoid-driver/blob/master/hardware/midi-solenoid-driver/front.JPG)
 
-In the near future, more MIDI interface boards will be designed and released, allowing for more connectivity options. These will likely include native plug-and-play USB MIDI, a Bluetooth adapter, and an AppleMIDI (RTP-MIDI / MIDI-over-network) WiFi interface.
+In the near future, more MIDI interface boards will be designed and released, allowing for more connectivity options. These will likely include:
+ - Native plug-and-play USB MIDI (as opposed to the MIDI-over-serial in use right now)
+ - Actual MIDI connector
+ - Bluetooth adapter
+ - AppleMIDI (RTP-MIDI / MIDI-over-network) WiFi interface
 
 Additionally, more driver boards for devices other than solenoids will be designed/released, including a MIDI servo driver.
 
