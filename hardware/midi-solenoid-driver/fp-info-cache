@@ -1,4 +1,4 @@
-15987627118503647
+15995451952157793
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -44177,6 +44177,13 @@ EMI Filter
 19
 4
 footprints
+57PC5F_5_DIN_MIDI_GENERIC
+
+
+0
+7
+6
+footprints
 Arduino_Nano
 Arduino Nano, http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
 Arduino Nano
@@ -44189,6 +44196,13 @@ fuse holder, car blade fuse mini, http://www.keyelco.com/product-pdf.cfm?p=306
 car blade fuse mini
 0
 4
+2
+footprints
+L_B82462G4_6.3mmx3mm
+
+
+0
+2
 2
 footprints
 piano-keys
@@ -44204,6 +44218,13 @@ Potentiometer vertical Bourns PTV09A-1 Single
 0
 3
 3
+footprints
+PowerSSOP-32-1EP_6.5x11mm_P0.65mm_EP5.2x11mm_Mask4.11x4.36mm_ThermalVias
+HTSSOP32: plastic thin shrink small outline package; 32 leads; body width 6.1 mm; lead pitch 0.65 mm (see NXP SSOP-TSSOP-VSO-REFLOW.pdf and sot487-1_po.pdf)
+SSOP 0.65 PowerPAD
+0
+57
+33
 footprints
 pro_mini
 IC, ARDUINO_PRO_MINI x 0,6"
@@ -44261,7 +44282,21 @@ vtLogo
 0
 0
 footprints
+vtLogo5.7mm
+
+
+0
+0
+0
+footprints
 vtLogo15mm
+
+
+0
+0
+0
+footprints
+wifi-symbol
 
 
 0
