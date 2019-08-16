@@ -78,19 +78,16 @@ void TestDipSwitches() {
   digitalWrite(pinNumbers[3], readSmallDip(3));
 
   //Set next 7 outputs to the state of the large dip switch
-  digitalWrite(pinNumbers[4], digitalRead(MIDI_NOTE_BIT[0]));
-  digitalWrite(pinNumbers[5], digitalRead(MIDI_NOTE_BIT[1]));
-  digitalWrite(pinNumbers[6], digitalRead(MIDI_NOTE_BIT[2]));
-  digitalWrite(pinNumbers[7], digitalRead(MIDI_NOTE_BIT[3]));
-  digitalWrite(pinNumbers[8], digitalRead(MIDI_NOTE_BIT[4]));
-  digitalWrite(pinNumbers[9], digitalRead(MIDI_NOTE_BIT[5]));
-  digitalWrite(pinNumbers[10], digitalRead(MIDI_NOTE_BIT[6]));
+  digitalWrite(pinNumbers[4], ! digitalRead(MIDI_NOTE_BIT[0]));
+  digitalWrite(pinNumbers[5], ! digitalRead(MIDI_NOTE_BIT[1]));
+  digitalWrite(pinNumbers[6], ! digitalRead(MIDI_NOTE_BIT[2]));
+  digitalWrite(pinNumbers[7], ! digitalRead(MIDI_NOTE_BIT[3]));
+  digitalWrite(pinNumbers[8], ! digitalRead(MIDI_NOTE_BIT[4]));
+  digitalWrite(pinNumbers[9], ! digitalRead(MIDI_NOTE_BIT[5]));
+  digitalWrite(pinNumbers[10],! digitalRead(MIDI_NOTE_BIT[6]));
 }
 
 void setup() {
-
-  Serial.begin(38400);
-
   //Set output pins mode
   for (int n = 0; n < 16; n++) {
     pinMode(pinNumbers[n], OUTPUT);
@@ -115,16 +112,18 @@ void setup() {
   if (readSmallDip(3)) MIDI_CHANNEL = MIDI_CHANNEL + 8;
 
   //read lowest midi note to respond to
-  if (digitalRead(MIDI_NOTE_BIT[0])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 1;
-  if (digitalRead(MIDI_NOTE_BIT[1])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 2;
-  if (digitalRead(MIDI_NOTE_BIT[2])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 4;
-  if (digitalRead(MIDI_NOTE_BIT[3])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 8;
-  if (digitalRead(MIDI_NOTE_BIT[4])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 16;
-  if (digitalRead(MIDI_NOTE_BIT[5])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 32;
-  if (digitalRead(MIDI_NOTE_BIT[6])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 64;
+  if (!digitalRead(MIDI_NOTE_BIT[0])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 1;
+  if (!digitalRead(MIDI_NOTE_BIT[1])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 2;
+  if (!digitalRead(MIDI_NOTE_BIT[2])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 4;
+  if (!digitalRead(MIDI_NOTE_BIT[3])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 8;
+  if (!digitalRead(MIDI_NOTE_BIT[4])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 16;
+  if (!digitalRead(MIDI_NOTE_BIT[5])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 32;
+  if (!digitalRead(MIDI_NOTE_BIT[6])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 64;
 
-
-
+  //begin serial receive, no transmit
+  Serial.begin(38400);
+  UCSR0B &= ~bit (TXEN0);
+  
 }
 
 //loop: wait for serial data, and interpret the message
