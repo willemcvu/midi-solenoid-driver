@@ -70,21 +70,23 @@ boolean readSmallDip(int bitNo) {
 }
 
 void TestDipSwitches() {
+  while (1 == 1) {
 
-  // Set first four outputs to the state of the small dip switch
-  digitalWrite(pinNumbers[0], readSmallDip(0));
-  digitalWrite(pinNumbers[1], readSmallDip(1));
-  digitalWrite(pinNumbers[2], readSmallDip(2));
-  digitalWrite(pinNumbers[3], readSmallDip(3));
+    //Set first 7 outputs to the state of the large dip switch
+    digitalWrite(pinNumbers[0], ! digitalRead(MIDI_NOTE_BIT[6]));
+    digitalWrite(pinNumbers[1], ! digitalRead(MIDI_NOTE_BIT[5]));
+    digitalWrite(pinNumbers[2], ! digitalRead(MIDI_NOTE_BIT[4]));
+    digitalWrite(pinNumbers[3], ! digitalRead(MIDI_NOTE_BIT[3]));
+    digitalWrite(pinNumbers[4], ! digitalRead(MIDI_NOTE_BIT[2]));
+    digitalWrite(pinNumbers[5], ! digitalRead(MIDI_NOTE_BIT[1]));
+    digitalWrite(pinNumbers[6], ! digitalRead(MIDI_NOTE_BIT[0]));
 
-  //Set next 7 outputs to the state of the large dip switch
-  digitalWrite(pinNumbers[4], ! digitalRead(MIDI_NOTE_BIT[0]));
-  digitalWrite(pinNumbers[5], ! digitalRead(MIDI_NOTE_BIT[1]));
-  digitalWrite(pinNumbers[6], ! digitalRead(MIDI_NOTE_BIT[2]));
-  digitalWrite(pinNumbers[7], ! digitalRead(MIDI_NOTE_BIT[3]));
-  digitalWrite(pinNumbers[8], ! digitalRead(MIDI_NOTE_BIT[4]));
-  digitalWrite(pinNumbers[9], ! digitalRead(MIDI_NOTE_BIT[5]));
-  digitalWrite(pinNumbers[10],! digitalRead(MIDI_NOTE_BIT[6]));
+    // Set first four outputs to the state of the small dip switch
+    digitalWrite(pinNumbers[7], readSmallDip(0));
+    digitalWrite(pinNumbers[8], readSmallDip(1));
+    digitalWrite(pinNumbers[9], readSmallDip(2));
+    digitalWrite(pinNumbers[10], readSmallDip(3));
+  }
 }
 
 void setup() {
@@ -105,11 +107,16 @@ void setup() {
     digitalWrite(pinNumbers[n], LOW);
   }
 
-  //read midi channel to respond to
-  if (readSmallDip(0)) MIDI_CHANNEL = MIDI_CHANNEL + 1;
-  if (readSmallDip(1)) MIDI_CHANNEL = MIDI_CHANNEL + 2;
-  if (readSmallDip(2)) MIDI_CHANNEL = MIDI_CHANNEL + 4;
-  if (readSmallDip(3)) MIDI_CHANNEL = MIDI_CHANNEL + 8;
+  // test DIP switches
+  //TestDipSwitches();
+  //The above function is an infinite while-loop. Reflash this firmware with the above line uncommented, and the status of the ouputs will mirror the status of the DIP switches.
+  //Useful for testing outputs and DIP switches.
+
+  //read midi channel to respond to, zero-indexed (!! most midi software is 1-indexed !!)
+  if (readSmallDip(3)) MIDI_CHANNEL = MIDI_CHANNEL + 1;
+  if (readSmallDip(2)) MIDI_CHANNEL = MIDI_CHANNEL + 2;
+  if (readSmallDip(1)) MIDI_CHANNEL = MIDI_CHANNEL + 4;
+  if (readSmallDip(0)) MIDI_CHANNEL = MIDI_CHANNEL + 8;
 
   //read lowest midi note to respond to
   if (!digitalRead(MIDI_NOTE_BIT[0])) LOWEST_MIDI_NOTE = LOWEST_MIDI_NOTE + 1;
@@ -122,8 +129,9 @@ void setup() {
 
   //begin serial receive, no transmit
   Serial.begin(38400);
+  //Disable hardware UART transmit
   UCSR0B &= ~bit (TXEN0);
-  
+
 }
 
 //loop: wait for serial data, and interpret the message
@@ -136,7 +144,7 @@ void loop () {
     incomingByte = Serial.read();
 
     // wait for as status-byte, channel 1, note on or off
-    if (incomingByte == 144) { // note on message starting starting
+    if (incomingByte == 144 + MIDI_CHANNEL) { // note on message starting starting
       //digitalWrite(pinNumbers[14],HIGH);
       //delay(1);
       //digitalWrite(pinNumbers[14],LOW);
@@ -162,7 +170,6 @@ void loop () {
       velocity = 0;
       action = 0;
     } else {
-      //nada
     }
   }
 }
@@ -179,8 +186,8 @@ void playNote(byte note, byte velocity) {
   }
 
   //play note if it's in the correct range
-  if ((note >= LOWEST_MIDI_NOTE) and (note <= LOWEST_MIDI_NOTE+16)){
-    digitalWrite(pinNumbers[note-LOWEST_MIDI_NOTE], value);
+  if ((note >= LOWEST_MIDI_NOTE) and (note <= LOWEST_MIDI_NOTE + 16)) {
+    digitalWrite(pinNumbers[note - LOWEST_MIDI_NOTE], value);
     //digitalWrite(pinNumbers[12],value);
   }
 }
