@@ -1,3 +1,5 @@
+#include <WiFiManager.h>
+
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiUdp.h>
@@ -5,23 +7,18 @@
 #include "MIDI.h" // dependency: https://github.com/FortySevenEffects/arduino_midi_library 
 #include "AppleMidi.h"
 
-//comment this out to actually send via RJ12 jack, as that UART is shared between RJ12 and serial header
-//If you uncomment this, then you'll want to unplug any boards from the RJ12 jack as they'll get non-MIDI debug messages.
-//#define SERIAL_DEBUG_ON
-
-char ssid[] = "Shell-2.4"; //  your network SSID (name)
-char pass[] = "Herm1tCrabs";    // your network password (use for WPA, or use as key for WEP)
-
 unsigned long t0 = millis();
 bool isConnected = false;
 
 //RJ12 MIDI settings
-struct rj12MidiSettings : public midi::DefaultSettings
-{
+struct rj12MidiSettings : public midi::DefaultSettings {
     static const long BaudRate = 38400;
 };
 
 APPLEMIDI_CREATE_INSTANCE(WiFiUDP, AppleMIDI); // see definition in AppleMidi_Defs.h
+
+WiFiManager wifiManager;
+
 
 // Created and binds the MIDI interface to the default hardware Serial port
 MIDI_CREATE_INSTANCE(HardwareSerial,Serial1,nativeMidi);
@@ -30,47 +27,66 @@ MIDI_CREATE_INSTANCE(HardwareSerial,Serial1,nativeMidi);
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+//for LED status
+
+#include <Ticker.h>
+Ticker ticker;
+
+void tick()
+{
+  //toggle state
+  int state = digitalRead(BUILTIN_LED);  // get the current state of GPIO1 pin
+  digitalWrite(BUILTIN_LED, !state);     // set pin to the opposite state
+}
+
+//gets called when WiFiManager enters configuration mode
+void configModeCallback (WiFiManager *myWiFiManager) {
+  Serial.println("Entered config mode");
+  Serial.println(WiFi.softAPIP());
+  //if you used auto generated SSID, print it
+  Serial.println(myWiFiManager->getConfigPortalSSID());
+  //entered config mode, make led toggle faster
+  ticker.attach(0.2, tick);
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+
 void setup() {
   Serial.begin(38400);
-#ifdef SERIAL_DEBUG_ON
-  // Serial for debug
- // Serial.begin(115200);
-  while (!Serial) {
-    ; // wait for serial port to connect.
-  }
-
-  Serial.print(F("Getting IP address..."));
   
-#endif
+  //set led pin as output
+  pinMode(BUILTIN_LED, OUTPUT);
+  // start ticker with 0.5 because we start in AP mode and try to connect
+  ticker.attach(0.6, tick);
 
-  WiFi.begin(ssid, pass);
+  //WiFiManager
+  //Local intialization. Once its business is done, there is no need to keep it around
+  WiFiManager wifiManager;
+  //reset settings - for testing
+  //wifiManager.resetSettings();
 
+  //set callback that gets called when connecting to previous WiFi fails, and enters Access Point mode
+  wifiManager.setAPCallback(configModeCallback);
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-#ifdef SERIAL_DEBUG_ON
-    Serial.print(F("."));
-#endif
+  //fetches ssid and pass and tries to connect
+  //if it does not connect it starts an access point with the specified name
+  //here  "AutoConnectAP"
+  //and goes into a blocking loop awaiting configuration
+  if (!wifiManager.autoConnect()) {
+    //reset and try again, or maybe put it to deep sleep
+    ESP.reset();
+    delay(1000);
   }
+  
+  //if you get here you have connected to the WiFi
+  Serial.println("connected...yeey :)");
+  ticker.detach();
+  //keep LED on
+  digitalWrite(BUILTIN_LED, LOW);
 
-#ifdef SERIAL_DEBUG_ON
-  Serial.println(F(""));
-  Serial.println(F("WiFi connected"));
-
-  Serial.println();
-  Serial.print(F("IP address is "));
-  Serial.println(WiFi.localIP());
-
-  Serial.println(F("OK, now make sure you an rtpMIDI session that is Enabled"));
-  Serial.print(F("Add device named Arduino with Host/Port "));
-  Serial.print(WiFi.localIP());
-  Serial.println(F(":5004"));
-  Serial.println(F("Then press the Connect button"));
-  Serial.println(F("Then open a MIDI listener (eg MIDI-OX) and monitor incoming notes"));
-
-#endif
-
-  // Create a session and wait for a remote host to connect to us
+    // Create a session and wait for a remote host to connect to us
   AppleMIDI.begin("test");
 
   AppleMIDI.OnConnected(OnAppleMidiConnected);
@@ -79,17 +95,10 @@ void setup() {
   AppleMIDI.OnReceiveNoteOn(OnAppleMidiNoteOn);
   AppleMIDI.OnReceiveNoteOff(OnAppleMidiNoteOff);
 
-#ifdef SERIAL_DEBUG_ON
-  Serial.println(F("Sending NoteOn/Off of note 45, every second"));
-#endif
-
   pinMode(13,OUTPUT);
   digitalWrite(13,HIGH);
 }
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
+  
 void loop()
 {
   // Listen to incoming notes
