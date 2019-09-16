@@ -7,7 +7,7 @@
 
 //comment this out to actually send via RJ12 jack, as that UART is shared between RJ12 and serial header
 //If you uncomment this, then you'll want to unplug any boards from the RJ12 jack as they'll get non-MIDI debug messages.
-#define SERIAL_DEBUG_ON
+//#define SERIAL_DEBUG_ON
 
 char ssid[] = "Shell-2.4"; //  your network SSID (name)
 char pass[] = "Herm1tCrabs";    // your network password (use for WPA, or use as key for WEP)
