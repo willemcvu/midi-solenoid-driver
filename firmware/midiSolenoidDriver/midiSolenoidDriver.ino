@@ -10,7 +10,6 @@ byte MIDI_NOTE_BIT[] =  {15, 16, 17, 18, 19, 1, 2};
 // Digital output pin mappings in sequential order ("OUTPUTS 1-16")
 byte pinNumbers[] = {3, 4, 23, 24, 20, 21, 5, 6, 7, 8, 9, 10, 11, 12, 13, 25};
 
-
 // Global vars
 byte MIDI_CHANNEL = 0;
 byte LOWEST_MIDI_NOTE = 0;
@@ -131,7 +130,6 @@ void setup() {
   Serial.begin(38400);
   //Disable hardware UART transmit
   UCSR0B &= ~bit (TXEN0);
-
 }
 
 //loop: wait for serial data, and interpret the message
@@ -149,7 +147,7 @@ void loop () {
       //delay(1);
       //digitalWrite(pinNumbers[14],LOW);
       action = 1;
-    } else if (incomingByte == 128) { // note off message starting
+    } else if (incomingByte == 128+ MIDI_CHANNEL) { // note off message starting
       action = 0;
     } else if (incomingByte == 208) { // aftertouch message starting
       //not implemented yet
