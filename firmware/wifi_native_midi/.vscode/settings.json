@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.linux": {
+        "PATH": "/home/willem/.platformio/penv/bin:/home/willem/.platformio/penv:/home/willem/bin:/home/willem/.local/bin:/home/willem/bin:/home/willem/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+        "PLATFORMIO_CALLER": "vscode"
+    }
+}

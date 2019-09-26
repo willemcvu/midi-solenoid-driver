@@ -1,0 +1,4 @@
+{
+    "sketch": "wifi_native_midi.ino",
+    "port": "/dev/ttyUSB0"
+}
