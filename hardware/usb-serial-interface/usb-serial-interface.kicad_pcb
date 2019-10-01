@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew 5.1.3-ffb9f22~84~ubuntu16.04.1)
+(kicad_pcb (version 20171130) (host pcbnew 5.1.4-e60b266~84~ubuntu16.04.1)
 
   (general
     (thickness 1.6)
@@ -963,6 +963,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 -90))
     )
+    (model "${CUSTOM_3D_MODELS}/USB type-B female PCB.STEP"
+      (offset (xyz -1.5494 -7.2644 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 -90))
+    )
   )
 
   (module footprints:RJ12_Amphenol_54601 (layer F.Cu) (tedit 5CEC50ED) (tstamp 5D3ED12C)
@@ -1018,6 +1023,11 @@
     )
     (model :CUSTOM_3D_MODELS:54601-906WPLFc.stp
       (offset (xyz 3.25 -16.8 0.1))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
+    (model ${CUSTOM_3D_MODELS}/54601-906WPLFc.stp
+      (offset (xyz 3.2512 -16.79956 0.09906))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 0))
     )

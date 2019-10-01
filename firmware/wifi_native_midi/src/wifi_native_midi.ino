@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <WiFiManager.h>
 
 #include <ESP8266WiFi.h>
@@ -9,11 +10,6 @@
 
 unsigned long t0 = millis();
 bool isConnected = false;
-
-//RJ12 MIDI settings
-struct rj12MidiSettings : public midi::DefaultSettings {
-    static const long BaudRate = 38400;
-};
 
 APPLEMIDI_CREATE_INSTANCE(WiFiUDP, AppleMIDI); // see definition in AppleMidi_Defs.h
 
@@ -164,3 +160,4 @@ static void OnAppleMidiNoteOff(byte channel, byte note, byte velocity) {
   digitalWrite(13,HIGH);
   
 }
+//Hello, this is Haley Warren commenting for EE106
