@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew 5.1.4-e60b266~84~ubuntu16.04.1)
+(kicad_pcb (version 20171130) (host pcbnew "(5.1.2)-2")
 
   (general
     (thickness 1.6)
@@ -425,7 +425,7 @@
   )
 
   (module Symbol:OSHW-Logo2_9.8x8mm_SilkScreen (layer B.Cu) (tedit 0) (tstamp 5D3F1CA6)
-    (at 85.09 81.915 180)
+    (at 85.09 80.342 180)
     (descr "Open Source Hardware Symbol")
     (tags "Logo Symbol OSHW")
     (attr virtual)
