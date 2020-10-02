@@ -14,6 +14,7 @@ byte pinNumbers[] = {3, 4, 23, 24, 20, 21, 5, 6, 7, 8, 9, 10, 11, 12, 13, 25};
 byte MIDI_CHANNEL = 0;
 byte LOWEST_MIDI_NOTE = 0;
 byte incomingByte;
+byte byteNumber = 0;
 byte note;
 byte velocity;
 int action = 2;
@@ -147,26 +148,31 @@ void loop () {
       //delay(1);
       //digitalWrite(pinNumbers[14],LOW);
       action = 1;
-    } else if (incomingByte == 128+ MIDI_CHANNEL) { // note off message starting
+      byteNumber = 1;
+    } else if (incomingByte == 128 + MIDI_CHANNEL) { // note off message starting
       action = 0;
+      byteNumber = 1;
     } else if (incomingByte == 208) { // aftertouch message starting
       //not implemented yet
     } else if (incomingByte == 160) { // polypressure message starting
       //not implemented yet
-    } else if ( (action == 0) && (note == 0) ) { // if we received a "note off", we wait for which note (databyte)
+    } else if ( (action == 0) && (byteNumber == 1) ) { // if we received a "note off", we wait for which note (databyte)
       note = incomingByte;
       playNote(note, 0);
       note = 0;
       velocity = 0;
       action = 2;
-    } else if ( (action == 1) && (note == 0) ) { // if we received a "note on", we wait for the note (databyte)
+      byteNumber = 0;
+    } else if ( (action == 1) && (byteNumber == 1) ) { // if we received a "note on", we wait for the note (databyte)
       note = incomingByte;
-    } else if ( (action == 1) && (note != 0) ) { // ...and then the velocity
+      byteNumber = 2;
+    } else if ( (action == 1) && (byteNumber == 2) ) { // ...and then the velocity
       velocity = incomingByte;
       playNote(note, velocity);
       note = 0;
       velocity = 0;
       action = 0;
+      byteNumber = 0;
     } else {
     }
   }
