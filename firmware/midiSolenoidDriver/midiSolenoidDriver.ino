@@ -184,7 +184,7 @@ void playNote(byte note, byte velocity) {
   }
 
   //play note if it's in the correct range
-  if ((note >= LOWEST_MIDI_NOTE) and (note <= LOWEST_MIDI_NOTE + 16)) {
+  if ((note >= LOWEST_MIDI_NOTE) and (note < LOWEST_MIDI_NOTE + 16)) {
     digitalWrite(pinNumbers[note - LOWEST_MIDI_NOTE], value);
     //digitalWrite(pinNumbers[12],value);
   }
